@@ -1,2 +1,2 @@
 # barbearia
-crud barbearia
+software barbearia
