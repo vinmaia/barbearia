@@ -7,23 +7,39 @@
 const db = [];
 let nextId = 1;
 
-const model = (cliente, id = nextId++) => {
+const model = (body, id = nextId++) => {
+  const telefone = body.telefone
+    .replaceAll("-", "")
+    .replaceAll("(", "")
+    .replaceAll(")", "")
+    .replaceAll(" ", "");
+
+    const soNumero = true
+
+    telefone.forEach(el => {
+        if(isNaN(Number(el))) {
+            soNumero = false
+        } 
+    })
   if (
-    cliente.nome != undefined &&
-    cliente.nome != "" &&
-    cliente.telefone != undefined &&
-    cliente.telefone != "" &&
-    cliente.email != undefined &&
-    cliente.email != "" &&
-    cliente.senha != undefined &&
-    cliente.senha != ""
+    body.nome != undefined &&
+    body.nome != "" &&
+    body.telefone != undefined &&
+    telefone != "" &&
+    body.email != undefined &&
+    body.email != "" &&
+    body.senha != undefined &&
+    body.senha != "" &&
+    telefone.length >= 11 &&
+    body.email.includes("@") &&
+    telefone.length <= 12
   ) {
     return {
       id,
-      nome: cliente.nome,
-      telefone: cliente.telefone,
-      email: cliente.email,
-      senha: cliente.senha,
+      nome: body.nome,
+      telefone: body.telefone,
+      email: body.email,
+      senha: body.senha,
     };
   }
 };
