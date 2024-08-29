@@ -2,7 +2,7 @@
  - nome
  - telefone
  - email
- - senha?*/
+ - senha*/
 
  const model = require("../models/cliente.js")
 
